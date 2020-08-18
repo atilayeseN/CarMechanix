@@ -1,0 +1,508 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="fuelrmModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admins">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Guid" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CarInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="LicencePlate" Type="nvarchar" MaxLength="9" />
+          <Property Name="CarBranch" Type="nvarchar" MaxLength="20" />
+          <Property Name="Model" Type="nvarchar" MaxLength="20" />
+          <Property Name="Age" Type="int" />
+          <Property Name="Color" Type="nvarchar" MaxLength="20" />
+          <Property Name="OilDate" Type="date" />
+          <Property Name="IsDelete" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'fuelrm.dbo.CompanyDatas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CompanyDatas">
+          <Key>
+            <PropertyRef Name="TotalRev" />
+            <PropertyRef Name="Sales" />
+            <PropertyRef Name="StoreNumber" />
+            <PropertyRef Name="Customers" />
+          </Key>
+          <Property Name="TotalRev" Type="money" Nullable="false" />
+          <Property Name="Sales" Type="int" Nullable="false" />
+          <Property Name="StoreNumber" Type="int" Nullable="false" />
+          <Property Name="Customers" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Password_LOG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GUİD" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TİME" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProcessContent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="ProuctID" Type="int" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ProcessINFO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="ContentID" Type="int" />
+          <Property Name="CarID" Type="int" />
+          <Property Name="Time" Type="datetime" />
+          <Property Name="AdminID" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="11" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="Email" Type="nchar" MaxLength="320" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'fuelrm.dbo.URUNLISTEM' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="URUNLISTEM">
+          <Key>
+            <PropertyRef Name="PRODUCT_CODE" />
+            <PropertyRef Name="PRODUCT_NAME" />
+            <PropertyRef Name="PRODUCT_TYPE" />
+          </Key>
+          <Property Name="PRODUCT_CODE" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="PRODUCT_NAME" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="PRODUCT_TYPE" Type="varchar" MaxLength="8" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CarInfo_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="CarInfo" Type="Self.CarInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CarInfo">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProcessINFO_Admins">
+          <End Role="Admins" Type="Self.Admins" Multiplicity="0..1" />
+          <End Role="ProcessINFO" Type="Self.ProcessINFO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admins">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProcessINFO">
+              <PropertyRef Name="AdminID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProcessINFO_CarInfo">
+          <End Role="CarInfo" Type="Self.CarInfo" Multiplicity="0..1" />
+          <End Role="ProcessINFO" Type="Self.ProcessINFO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProcessINFO">
+              <PropertyRef Name="CarID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProcessINFO_ProcessContent">
+          <End Role="ProcessContent" Type="Self.ProcessContent" Multiplicity="0..1" />
+          <End Role="ProcessINFO" Type="Self.ProcessINFO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProcessContent">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProcessINFO">
+              <PropertyRef Name="ContentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="fuelrmModelStoreContainer">
+          <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarInfo" EntityType="Self.CarInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Password_LOG" EntityType="Self.Password_LOG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProcessContent" EntityType="Self.ProcessContent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProcessINFO" EntityType="Self.ProcessINFO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyDatas" EntityType="Self.CompanyDatas" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CompanyDatas].[TotalRev] AS [TotalRev], 
+    [CompanyDatas].[Sales] AS [Sales], 
+    [CompanyDatas].[StoreNumber] AS [StoreNumber], 
+    [CompanyDatas].[Customers] AS [Customers]
+    FROM [dbo].[CompanyDatas] AS [CompanyDatas]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="URUNLISTEM" EntityType="Self.URUNLISTEM" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [URUNLISTEM].[PRODUCT_CODE] AS [PRODUCT_CODE], 
+    [URUNLISTEM].[PRODUCT_NAME] AS [PRODUCT_NAME], 
+    [URUNLISTEM].[PRODUCT_TYPE] AS [PRODUCT_TYPE]
+    FROM [dbo].[URUNLISTEM] AS [URUNLISTEM]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_CarInfo_Users" Association="Self.FK_CarInfo_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="CarInfo" EntitySet="CarInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProcessINFO_Admins" Association="Self.FK_ProcessINFO_Admins">
+            <End Role="Admins" EntitySet="Admins" />
+            <End Role="ProcessINFO" EntitySet="ProcessINFO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProcessINFO_CarInfo" Association="Self.FK_ProcessINFO_CarInfo">
+            <End Role="CarInfo" EntitySet="CarInfo" />
+            <End Role="ProcessINFO" EntitySet="ProcessINFO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProcessINFO_ProcessContent" Association="Self.FK_ProcessINFO_ProcessContent">
+            <End Role="ProcessContent" EntitySet="ProcessContent" />
+            <End Role="ProcessINFO" EntitySet="ProcessINFO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="fuelrmModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="fuelrmEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="fuelrmModel.Admins" />
+          <EntitySet Name="CarInfo" EntityType="fuelrmModel.CarInfo" />
+          <EntitySet Name="Password_LOG" EntityType="fuelrmModel.Password_LOG" />
+          <EntitySet Name="ProcessContent" EntityType="fuelrmModel.ProcessContent" />
+          <EntitySet Name="ProcessINFO" EntityType="fuelrmModel.ProcessINFO" />
+          <EntitySet Name="sysdiagrams" EntityType="fuelrmModel.sysdiagrams" />
+          <EntitySet Name="Users" EntityType="fuelrmModel.Users" />
+          <EntitySet Name="CompanyDatas" EntityType="fuelrmModel.CompanyDatas" />
+          <EntitySet Name="URUNLISTEM" EntityType="fuelrmModel.URUNLISTEM" />
+          <AssociationSet Name="FK_ProcessINFO_Admins" Association="fuelrmModel.FK_ProcessINFO_Admins">
+            <End Role="Admins" EntitySet="Admins" />
+            <End Role="ProcessINFO" EntitySet="ProcessINFO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarInfo_Users" Association="fuelrmModel.FK_CarInfo_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="CarInfo" EntitySet="CarInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProcessINFO_CarInfo" Association="fuelrmModel.FK_ProcessINFO_CarInfo">
+            <End Role="CarInfo" EntitySet="CarInfo" />
+            <End Role="ProcessINFO" EntitySet="ProcessINFO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProcessINFO_ProcessContent" Association="fuelrmModel.FK_ProcessINFO_ProcessContent">
+            <End Role="ProcessContent" EntitySet="ProcessContent" />
+            <End Role="ProcessINFO" EntitySet="ProcessINFO" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Admins">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Guid" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProcessINFO" Relationship="fuelrmModel.FK_ProcessINFO_Admins" FromRole="Admins" ToRole="ProcessINFO" />
+        </EntityType>
+        <EntityType Name="CarInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="LicencePlate" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
+          <Property Name="CarBranch" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="Color" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="OilDate" Type="DateTime" Precision="0" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <NavigationProperty Name="Users" Relationship="fuelrmModel.FK_CarInfo_Users" FromRole="CarInfo" ToRole="Users" />
+          <NavigationProperty Name="ProcessINFO" Relationship="fuelrmModel.FK_ProcessINFO_CarInfo" FromRole="CarInfo" ToRole="ProcessINFO" />
+        </EntityType>
+        <EntityType Name="Password_LOG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GUİD" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TİME" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="ProcessContent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ProuctID" Type="Int32" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProcessINFO" Relationship="fuelrmModel.FK_ProcessINFO_ProcessContent" FromRole="ProcessContent" ToRole="ProcessINFO" />
+        </EntityType>
+        <EntityType Name="ProcessINFO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ContentID" Type="Int32" />
+          <Property Name="CarID" Type="Int32" />
+          <Property Name="Time" Type="DateTime" Precision="3" />
+          <Property Name="AdminID" Type="Int32" />
+          <NavigationProperty Name="Admins" Relationship="fuelrmModel.FK_ProcessINFO_Admins" FromRole="ProcessINFO" ToRole="Admins" />
+          <NavigationProperty Name="CarInfo" Relationship="fuelrmModel.FK_ProcessINFO_CarInfo" FromRole="ProcessINFO" ToRole="CarInfo" />
+          <NavigationProperty Name="ProcessContent" Relationship="fuelrmModel.FK_ProcessINFO_ProcessContent" FromRole="ProcessINFO" ToRole="ProcessContent" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="Email" Type="String" MaxLength="320" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="CarInfo" Relationship="fuelrmModel.FK_CarInfo_Users" FromRole="Users" ToRole="CarInfo" />
+        </EntityType>
+        <EntityType Name="CompanyDatas">
+          <Key>
+            <PropertyRef Name="TotalRev" />
+            <PropertyRef Name="Sales" />
+            <PropertyRef Name="StoreNumber" />
+            <PropertyRef Name="Customers" />
+          </Key>
+          <Property Name="TotalRev" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Sales" Type="Int32" Nullable="false" />
+          <Property Name="StoreNumber" Type="Int32" Nullable="false" />
+          <Property Name="Customers" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="URUNLISTEM">
+          <Key>
+            <PropertyRef Name="PRODUCT_CODE" />
+            <PropertyRef Name="PRODUCT_NAME" />
+            <PropertyRef Name="PRODUCT_TYPE" />
+          </Key>
+          <Property Name="PRODUCT_CODE" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PRODUCT_NAME" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PRODUCT_TYPE" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_ProcessINFO_Admins">
+          <End Type="fuelrmModel.Admins" Role="Admins" Multiplicity="0..1" />
+          <End Type="fuelrmModel.ProcessINFO" Role="ProcessINFO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admins">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProcessINFO">
+              <PropertyRef Name="AdminID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarInfo_Users">
+          <End Type="fuelrmModel.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="fuelrmModel.CarInfo" Role="CarInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CarInfo">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProcessINFO_CarInfo">
+          <End Type="fuelrmModel.CarInfo" Role="CarInfo" Multiplicity="0..1" />
+          <End Type="fuelrmModel.ProcessINFO" Role="ProcessINFO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarInfo">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProcessINFO">
+              <PropertyRef Name="CarID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProcessINFO_ProcessContent">
+          <End Type="fuelrmModel.ProcessContent" Role="ProcessContent" Multiplicity="0..1" />
+          <End Type="fuelrmModel.ProcessINFO" Role="ProcessINFO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProcessContent">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProcessINFO">
+              <PropertyRef Name="ContentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="fuelrmModelStoreContainer" CdmEntityContainer="fuelrmEntities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="fuelrmModel.Admins">
+              <MappingFragment StoreEntitySet="Admins">
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarInfo">
+            <EntityTypeMapping TypeName="fuelrmModel.CarInfo">
+              <MappingFragment StoreEntitySet="CarInfo">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="OilDate" ColumnName="OilDate" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="CarBranch" ColumnName="CarBranch" />
+                <ScalarProperty Name="LicencePlate" ColumnName="LicencePlate" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Password_LOG">
+            <EntityTypeMapping TypeName="fuelrmModel.Password_LOG">
+              <MappingFragment StoreEntitySet="Password_LOG">
+                <ScalarProperty Name="TİME" ColumnName="TİME" />
+                <ScalarProperty Name="GUİD" ColumnName="GUİD" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProcessContent">
+            <EntityTypeMapping TypeName="fuelrmModel.ProcessContent">
+              <MappingFragment StoreEntitySet="ProcessContent">
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProuctID" ColumnName="ProuctID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProcessINFO">
+            <EntityTypeMapping TypeName="fuelrmModel.ProcessINFO">
+              <MappingFragment StoreEntitySet="ProcessINFO">
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="CarID" ColumnName="CarID" />
+                <ScalarProperty Name="ContentID" ColumnName="ContentID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="fuelrmModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="fuelrmModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyDatas">
+            <EntityTypeMapping TypeName="fuelrmModel.CompanyDatas">
+              <MappingFragment StoreEntitySet="CompanyDatas">
+                <ScalarProperty Name="Customers" ColumnName="Customers" />
+                <ScalarProperty Name="StoreNumber" ColumnName="StoreNumber" />
+                <ScalarProperty Name="Sales" ColumnName="Sales" />
+                <ScalarProperty Name="TotalRev" ColumnName="TotalRev" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="URUNLISTEM">
+            <EntityTypeMapping TypeName="fuelrmModel.URUNLISTEM">
+              <MappingFragment StoreEntitySet="URUNLISTEM">
+                <ScalarProperty Name="PRODUCT_TYPE" ColumnName="PRODUCT_TYPE" />
+                <ScalarProperty Name="PRODUCT_NAME" ColumnName="PRODUCT_NAME" />
+                <ScalarProperty Name="PRODUCT_CODE" ColumnName="PRODUCT_CODE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

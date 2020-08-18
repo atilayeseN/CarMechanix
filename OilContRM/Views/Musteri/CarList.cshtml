@@ -1,0 +1,123 @@
+﻿@using OilContRM.Models
+@model List<CarInfo>
+
+@{
+    ViewBag.Title = "CarList";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    var a = ViewBag.ID;
+    
+
+}
+
+<h2>CarList</h2>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Ubold - Responsive Admin Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Coderthemes" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+   
+
+    <!-- Plugin Css-->
+    <link rel="stylesheet" href="~/plugins/magnific-popup/css/magnific-popup.css" />
+    <link rel="stylesheet" href="~/plugins/jquery-datatables-editable/dataTables.bootstrap4.min.css" />
+
+    <!-- App css -->
+    
+    
+  
+
+    <script src="~/assets/js/modernizr.min.js"></script>
+
+</head>
+
+
+
+
+
+
+
+<div class="row">
+
+    <div class="col-sm-12">
+
+        <div class="card-box" style="margin-top:0">
+
+
+            <table class="table table-striped add-edit-table" id="datatable-editable">
+
+                <tr>
+                    <th>LicencePlate</th>
+                    <th>CarBranch</th>
+                    <th>Model</th>
+                    <th>Age</th>
+                    <th>Color</th>
+                    <th>OilDate</th>
+                    <th>Delete,Edit or Process to Car</th>
+                    
+
+
+
+
+
+                </tr>
+
+                <tbody>
+                    @foreach (var car in Model)
+                    {
+                    <tr class="gradeX">
+                        <td>@car.LicencePlate</td>
+                        <td>@car.CarBranch</td>
+                        <td>@car.Model</td>
+                        <td>@car.Age</td>
+                        <td>@car.Color</td>
+                        <td>@car.OilDate.Value.ToString("dd. MM. yyyy")</td>
+
+
+                        <td class="actions">
+                            <a href="/Musteri/DeleteCar/@car.ID" class="on-default edit-row" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-eraser"></i></a>
+                            <a href="/Musteri/EditCar/@car.ID" class="on-default edit-row" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
+                            <a href="/Process/TakeProcess/@car.ID" class="on-default edit-row" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add Process"><i class="fa fa-wrench"></i></a>
+                        </td>
+
+                        
+
+                    </tr>
+                    }
+
+
+                </tbody>
+            </table>
+            <a href="/Musteri/AddCar/@a" class="btn btn-primary">Add New Car</a>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="~/assets/js/jquery.min.js"></script>
+<script src="~/assets/js/popper.min.js"></script><!-- Popper for Bootstrap -->
+<script src="~/assets/js/bootstrap.min.js"></script>
+<script src="~/assets/js/waves.js"></script>
+<script src="~/assets/js/jquery.slimscroll.js"></script>
+<script src="~/assets/js/jquery.scrollTo.min.js"></script>
+
+<!-- Examples -->
+<script src="~/plugins/magnific-popup/js/jquery.magnific-popup.min.js"></script>
+<script src="~/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="~/plugins/tiny-editable/mindmup-editabletable.js"></script>
+<script src="~/plugins/tiny-editable/numeric-input-example.js"></script>
+
+<!-- App js -->
+<script src="~/assets/js/jquery.core.js"></script>
+<script src="~/assets/js/jquery.app.js"></script>
+
+<script src="~/assets/pages/datatables.editable.init.js"></script>
+
+<script>
+            $('#mainTable').editableTableWidget().numericInputExample().find('td:first').focus();
+</script>

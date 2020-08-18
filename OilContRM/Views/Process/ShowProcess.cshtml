@@ -1,0 +1,69 @@
+﻿@using OilContRM.Models
+@model List<OilContRM.Models.GetRecords>
+
+
+@{
+    ViewBag.Title = "ShowProcess";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+
+}
+
+<h2>ShowProcess</h2>
+
+
+
+
+<table class="table table-striped" id="">
+
+    <tr>
+        <th>Branch</th>
+        <th>Model</th>
+        <th>Color</th>
+        <th>Time</th>
+        <th>Licence</th>
+        <th>Description</th>
+        <th>Details</th>
+        <th>Delete</th>
+        <th>Bill</th>
+    </tr>
+
+    <tbody>
+        @foreach (var car in Model)
+        {
+            <tr class="gradeX">
+                <td>@car.Branch</td>
+                <td>@car.Model</td>
+                <td>@car.Color</td>
+                <td>@car.Time</td>
+                <td>@car.LicencePlate</td>
+                <td>@car.Description</td> 
+  
+                <a id="@car.ProcID" href="#" onclick=getID(@car.ProcID); return false">Get Details</a>
+                <td><a href="/Process/DeleteProcess/@car.ProcID" class="fa fa-trash" data-original-title="Delete"></a></td>
+                <td><a href="/Process/DeleteProcess/@car.ProcID" class="fa fa-paper-plane" data-original-title="SendBill"></a></td>
+
+
+
+
+
+
+
+            </tr>
+        }
+
+
+
+    </tbody>
+
+</table>
+
+
+<script>
+    function getID(ID) {
+        var x = ID;
+    }
+</script>
+
+
+
+

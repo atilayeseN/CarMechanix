@@ -1,0 +1,132 @@
+﻿@model OilContRM.Models.UserModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+
+    
+
+}
+
+<h2>EditCustomerInfos</h2>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Ubold - Responsive Admin Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Coderthemes" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+
+    <!-- App css -->
+    
+
+    <script src="~/assets/js/modernizr.min.js"></script>
+    <script src="~/Scripts/jquery-1.11.3.min.js">  
+</script>  
+  
+<script src="~/Scripts/jquery.validate.min.js"></script>  
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>  
+  
+<link href="~/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet" />  
+<script src="~/bootstrap-3.3.6-dist/js/bootstrap.js"></script>  
+  
+
+
+
+</head>
+
+
+
+
+
+<!-- Navigation Bar-->
+<!-- Page-Title -->
+<!-- end page title end breadcrumb -->
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card-box">
+
+            @using (Html.BeginForm())
+            {
+                <div class="row">
+                    <div class="col-12">
+                        <div class="p-20">
+
+
+                            <div class="form-group row">
+
+                                <label class="col-2 col-form-label">Name</label>
+
+                                <div class="col-10">
+                                    @Html.TextBoxFor(a=> a.name,new {@class="form-control" , maxlenght=20, autocomplete = "off" })
+
+
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-2 col-form-label" for="surname">Surname</label>
+                                <div class="col-10">
+                                    @Html.TextBoxFor(a => a.surname, new { @class = "form-control", maxlenght = 20, autocomplete = "off" })
+                                </div>
+                            </div>
+
+                           
+
+
+                            
+
+
+
+
+
+                            <div class="form-group row">
+                                <label class="col-2 col-form-label" for="tel">Tel</label>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(a => a.tel, new { @class = "form-control", maxlength = 11, autocomplete = "off" })
+                                </div>
+                            </div>
+
+
+
+                            <input type="submit" class="btn btn-primary" value="Edit">
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- end row -->
+            }
+            @{
+                var data = ViewBag.Message;
+                if (data != null)
+                {
+                    <script type="text/javascript">
+                               window.onload = function () {
+                                   alert("@ViewBag.Message");
+                               }
+
+                    </script>
+                }
+            }
+        </div> <!-- end card-box -->
+    </div><!-- end col -->
+</div>
+<!-- end row -->
+<!-- End Footer -->
+<!-- jQuery  -->
+<script src="~/assets/js/jquery.min.js"></script>
+<script src="~/assets/js/popper.min.js"></script><!-- Popper for Bootstrap -->
+<script src="~/assets/js/bootstrap.min.js"></script>
+<script src="~/assets/js/waves.js"></script>
+<script src="~/assets/js/jquery.slimscroll.js"></script>
+<script src="~/assets/js/jquery.scrollTo.min.js"></script>
+
+<!-- App js -->
+<script src="~/assets/js/jquery.core.js"></script>
+<script src="~/assets/js/jquery.app.js"></script>

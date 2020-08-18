@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<form action="/UploadImg/ImageUpload" method="post" enctype="multipart/form-data" >
+    <input type="file" class="c" name="uploadfile" id="uploadfile" />
+    <br />
+    <input type="submit" class="md-mail" value="Gönder"/>
+</form>

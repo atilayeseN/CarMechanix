@@ -1,0 +1,96 @@
+﻿@using OilContRM.Models
+@model List<Users>
+
+@{
+    ViewBag.Title = "CusList";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+
+
+
+
+}
+<h2>CustomerList</h2>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Ubold - Responsive Admin Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Coderthemes" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <link rel="shortcut icon" href="~/assets/images/favicon.ico">
+
+    <!-- Plugin Css-->
+    <link rel="stylesheet" href="~/plugins/magnific-popup/css/magnific-popup.css" />
+    <link rel="stylesheet" href="~/plugins/jquery-datatables-editable/dataTables.bootstrap4.min.css" />
+
+    <!-- App css -->
+    
+    
+    
+
+    <script src="~/assets/js/modernizr.min.js"></script>
+
+</head>
+
+
+<div class="row">
+
+    <div class="col-sm-12">
+
+        <div class="card-box" style="margin-top:0">
+
+
+            <table class="table table-striped add-edit-table" id="datatable-editable">
+
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Telephone</th>
+                    <th>Email</th>
+                    <th>Processes</th>
+
+
+
+
+
+
+                </tr>
+
+                <tbody>
+                    @foreach (var us in Model)
+                    {
+                        <tr class="gradeX">
+                            <td>@us.Name</td>
+                            <td>@us.Surname</td>
+                            <td>@us.Telephone</td>
+                            <td>@us.Email</td>
+
+
+                            <td class="actions">
+                                <a href="/Musteri/Edit/@us.ID" class="on-default edit-row" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-eraser"></i></a>
+                                <a href="/Musteri/DeleteUser/@us.ID" class="on-default remove-row" data-toggle="tooltip" data-placement="top" title="Delete" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
+                                <a href="/Musteri/CarList/@us.ID" class="card-view" data-toggle="tooltip" data-placement="top" title="Add" data-original-title="AddNewCar"><i class="fa fa-car"></i></a>
+                                <a href="/Musteri/SendEmail/@us.ID" class="md-email" data-toggle="tooltip" data-placement="top" title="Add" data-original-title="Message"><i class="fa fa-mail-forward"></i></a>
+                            </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+            <a href="Add" class="btn btn-primary">Add New Custommer</a>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
