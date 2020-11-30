@@ -20,6 +20,7 @@ namespace OilContRM.Models
         public Nullable<int> CarID { get; set; }
         public Nullable<System.DateTime> Time { get; set; }
         public Nullable<int> AdminID { get; set; }
+        public Nullable<bool> IsCalled { get; set; }
     
         public virtual Admins Admins { get; set; }
         public virtual CarInfo CarInfo { get; set; }

@@ -3,15 +3,26 @@
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
+<html>
+<head>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+
+    <meta name="viewport" content="width=device-width" />
+    <title>ToasterDeneme</title>
+</head>
+<body>
+    <button id="buton" onclick="" class="btn btn-primary">Buton</button>
+
+</body>
+</html>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<link href="~/Content/toastr.css" rel="stylesheet" />
+<script src="~/Scripts/toastr.js"></script>
+
+<script>
+    $(function () { //ready
+        toastr.success('Helal', 'If all three of these are referenced correctly, then this should toast should pop-up.');
+    });
+</script>

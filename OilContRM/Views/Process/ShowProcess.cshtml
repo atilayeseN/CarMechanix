@@ -1,69 +1,139 @@
-﻿@using OilContRM.Models
-@model List<OilContRM.Models.GetRecords>
+﻿@using OilContRM.Models;
+@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<OilContRM.Models.GetRecords>
 
 
 @{
     ViewBag.Title = "ShowProcess";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
-
 }
+<style>
+    .elements {
+        display: inline-block;
+    }
 
-<h2>ShowProcess</h2>
+    .center {
+        text-align: center;
+    }
 
+    .pagination {
+    }
 
-
-
-<table class="table table-striped" id="">
-
-    <tr>
-        <th>Branch</th>
-        <th>Model</th>
-        <th>Color</th>
-        <th>Time</th>
-        <th>Licence</th>
-        <th>Description</th>
-        <th>Details</th>
-        <th>Delete</th>
-        <th>Bill</th>
-    </tr>
-
-    <tbody>
-        @foreach (var car in Model)
-        {
-            <tr class="gradeX">
-                <td>@car.Branch</td>
-                <td>@car.Model</td>
-                <td>@car.Color</td>
-                <td>@car.Time</td>
-                <td>@car.LicencePlate</td>
-                <td>@car.Description</td> 
-  
-                <a id="@car.ProcID" href="#" onclick=getID(@car.ProcID); return false">Get Details</a>
-                <td><a href="/Process/DeleteProcess/@car.ProcID" class="fa fa-trash" data-original-title="Delete"></a></td>
-                <td><a href="/Process/DeleteProcess/@car.ProcID" class="fa fa-paper-plane" data-original-title="SendBill"></a></td>
-
-
-
-
-
-
-
-            </tr>
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+            border: 1px solid #ddd;
+            margin: 0 4px;
         }
 
+            .pagination a.active {
+                background-color: #4CAF50;
+                color: white;
+                border: 1px solid #4CAF50;
+            }
+
+            .pagination a:hover:not(.active) {
+                background-color: #ddd;
+            }
+</style>
 
 
-    </tbody>
+<p style="font-size:2em; font-weight:bolder">@Resources.Content.ShowProcesses</p><form class="form form-control form-inline" action="/Process/ShowProcess" method="get"><i class="fa fa-search" aria-hidden="true"></i><input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" name="search"></form>
 
-</table>
+
+
+
+
+<div class="container" id="container">
+
+</div>
+
+
+<div id="onload">
+    @Html.Partial("ProcessPartial", Model)
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div style="word-wrap:break-word">
+                <div class="modal-body" id="contentModal">
+                    ...
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+
+            <div class="modal-body " id="formcontentModal">
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@Html.PagedListPager(Model, page => Url.Action("ShowProcess",
+       new { page }), new PagedListRenderOptions()
+       {
+
+       })
+
+<button class="btn btn-primary" type="button" onclick="OpenFORM()">@Resources.Content.AddProcess</button>
 
 
 <script>
-    function getID(ID) {
-        var x = ID;
+    function GetID(ID) {
+        $.ajax({
+            url: "/Process/Explain?id=" + ID,
+            type: "get",
+            data: "",
+            success: function (result) {
+                $('#contentModal').html(result);
+                $('#myModal').modal('show');
+            }
+
+        });
+
     }
+    function OpenFORM() {
+        $.ajax({
+            url: "/Process/AddProcessFromModal",
+            success: function (returndata) {
+
+                $('#formcontentModal').html(returndata);
+                $('#formModal').modal('show');
+            },
+            dataType: "html"
+
+        });
+    }
+
+
+
+
 </script>
-
-
-
-

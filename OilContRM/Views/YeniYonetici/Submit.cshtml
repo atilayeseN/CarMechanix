@@ -4,6 +4,12 @@
     Layout = null;
 }
 <!DOCTYPE html>
+<style>
+    input.secure {
+        text-security: dis;
+        -web-text-security: disc
+    }
+</style>
 <html>
 <head>
     <meta charset="utf-8">
@@ -33,11 +39,13 @@
             </div>
 
             <div class="p-20">
-                <form class="form-horizontal m-t-20" action="/YeniYonetici/Submit" method="post">
+                <form class="form-horizontal m-t-20" action="/YeniYonetici/Submit" method="post" autocomplete="">
+                    <input name="username" type="text" id="fakeu" style="display:none" />
+                    <input name="pass" type="text" id="fakep" style="display:none" />
 
                     <div class="form-group ">
                         <div class="col-12">
-                            <input class="form-control" type="text" required="" name="uname" placeholder="Username">
+                            <input class="form-control" type="text" required="" name="uname" placeholder="Username" autocomplete="nope">
                         </div>
                     </div>
 
@@ -51,9 +59,9 @@
                                }
 
                             </script>
-                            }
                         }
-                    @{ 
+                    }
+                    @{
                         var edata = ViewBag.EMessage;
                         if (data != null)
                         {
@@ -66,14 +74,14 @@
 
                         }
                     }
-
+                        
 
 
 
 
                     <div class="form-group">
                         <div class="col-12">
-                            <input class="form-control" type="password" required="" name="pass" placeholder="Password">
+                            <input class="form-control" type="password" required="" name="pass" placeholder="Password" autocomplete="new-password">
                         </div>
                     </div>
 

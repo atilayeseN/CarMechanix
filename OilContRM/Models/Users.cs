@@ -26,6 +26,7 @@ namespace OilContRM.Models
         public string Telephone { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
         public string Email { get; set; }
+        public Nullable<bool> NeverCall { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CarInfo> CarInfo { get; set; }

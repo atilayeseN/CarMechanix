@@ -26,10 +26,13 @@ namespace OilContRM.Models
         }
     
         public virtual DbSet<Admins> Admins { get; set; }
+        public virtual DbSet<CallRecord> CallRecord { get; set; }
         public virtual DbSet<CarInfo> CarInfo { get; set; }
+        public virtual DbSet<Login_LOG> Login_LOG { get; set; }
         public virtual DbSet<Password_LOG> Password_LOG { get; set; }
         public virtual DbSet<ProcessContent> ProcessContent { get; set; }
         public virtual DbSet<ProcessINFO> ProcessINFO { get; set; }
+        public virtual DbSet<RegisterLOG> RegisterLOG { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<CompanyDatas> CompanyDatas { get; set; }

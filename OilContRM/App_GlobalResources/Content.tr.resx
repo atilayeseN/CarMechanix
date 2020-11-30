@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Ekle</value>
+  </data>
+  <data name="AddNewCar" xml:space="preserve">
+    <value>Yeni Araba Ekle</value>
+  </data>
+  <data name="Age" xml:space="preserve">
+    <value>Yaş</value>
+  </data>
+  <data name="Call" xml:space="preserve">
+    <value>Ara</value>
+  </data>
+  <data name="CallRecords" xml:space="preserve">
+    <value>Arama Kayıtları</value>
+  </data>
+  <data name="Car" xml:space="preserve">
+    <value>Araba</value>
+  </data>
+  <data name="CarBranch" xml:space="preserve">
+    <value>Marka</value>
+  </data>
+  <data name="CarList" xml:space="preserve">
+    <value>Araba Listesi</value>
+  </data>
+  <data name="CarMaintananceTime" xml:space="preserve">
+    <value>Araba Bakım Günü</value>
+  </data>
+  <data name="ChooseLicencePlate" xml:space="preserve">
+    <value>Plakayı Seç</value>
+  </data>
+  <data name="ChooseProduct" xml:space="preserve">
+    <value>Ürünü Seç</value>
+  </data>
+  <data name="ChooseType" xml:space="preserve">
+    <value>Tipini Seç</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Renk</value>
+  </data>
+  <data name="ContactToCustomer" xml:space="preserve">
+    <value>Müşteri İletişim</value>
+  </data>
+  <data name="CustomerList" xml:space="preserve">
+    <value>Müşteri Listesi</value>
+  </data>
+  <data name="CustomerName" xml:space="preserve">
+    <value>Müşteri Adı</value>
+  </data>
+  <data name="DeleteEditOrProcessToCar" xml:space="preserve">
+    <value>Sil,Düzenle veya İşlem Yap</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Açıklama</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Detaylar</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Eposta</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>İngilizce</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Detaylar</value>
+  </data>
+  <data name="Licence" xml:space="preserve">
+    <value>Plaka</value>
+  </data>
+  <data name="LicencePlate" xml:space="preserve">
+    <value>Plaka</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>İsim</value>
+  </data>
+  <data name="OilDate" xml:space="preserve">
+    <value>Yağ Günü</value>
+  </data>
+  <data name="Processes" xml:space="preserve">
+    <value>İşlemler</value>
+  </data>
+  <data name="ProcessRecords" xml:space="preserve">
+    <value>İşlem Kayıtları</value>
+  </data>
+  <data name="Sales" xml:space="preserve">
+    <value>Satışlar</value>
+  </data>
+  <data name="Stats" xml:space="preserve">
+    <value>Durum</value>
+  </data>
+  <data name="Stores" xml:space="preserve">
+    <value>Dükkanlar</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Surname" xml:space="preserve">
+    <value>Soyisim</value>
+  </data>
+  <data name="Telephone" xml:space="preserve">
+    <value>Telefon</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Zaman</value>
+  </data>
+  <data name="Turkish" xml:space="preserve">
+    <value>Türkçe</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Müşteri Adı</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Müşteriler</value>
+  </data>
+  <data name="AddACustomer" xml:space="preserve">
+    <value>Bir Müşteri Ekle</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Mesaj</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Konu</value>
+  </data>
+  <data name="WriteYourMessageHere" xml:space="preserve">
+    <value>Mesajınızı şu kişiye yazın</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Content" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>content.resx;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="Content_Designer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>content.designer.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Gönder</value>
+  </data>
+  <data name="SendRepasswordCode" xml:space="preserve">
+    <value>Yeni şifre kodu gönder</value>
+  </data>
+  <data name="AddProcess" xml:space="preserve">
+    <value>İşlem Ekle</value>
+  </data>
+  <data name="ShowProcesses" xml:space="preserve">
+    <value>İşlemleri Göster</value>
+  </data>
+  <data name="ChangeYourPassword" xml:space="preserve">
+    <value>Şifrenizi Değiştirin</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Yeni Şifreniz</value>
+  </data>
+  <data name="YouHaveToCall" xml:space="preserve">
+    <value>Şu kişiyi lütfen arayın</value>
+  </data>
+  <data name="ChangeLanguage" xml:space="preserve">
+    <value>Dil değiştir</value>
+  </data>
+  <data name="EditThisCar" xml:space="preserve">
+    <value>Bu Arabayı Düzenle</value>
+  </data>
+  <data name="ChangeLOGO" xml:space="preserve">
+    <value>Logo değiştir</value>
+  </data>
+  <data name="NumberOfPeopleToCall" xml:space="preserve">
+    <value>Aranacak Kişi Sayısı</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Çıkış</value>
+  </data>
+  <data name="EditCustomer" xml:space="preserve">
+    <value>Müşteri Düzenle</value>
+  </data>
+  <data name="NeverCallAgain" xml:space="preserve">
+    <value>Bir daha arama</value>
+  </data>
+</root>

@@ -22,6 +22,8 @@ namespace OilContRM.Controllers
            
             fuelrmEntities db = new fuelrmEntities();
             Admins admin = new Admins();
+            RegisterLOG reg = new RegisterLOG();
+            string g = Guid.NewGuid().ToString();
             admin.Username = form["uname"];
             if (db.Admins.Any(x => x.Username == admin.Username))
             {
@@ -31,8 +33,11 @@ namespace OilContRM.Controllers
 
             }
             admin.Password = form["pass"];
-           
             admin.Email = form["email"];
+            admin.RegGUID = g;
+            reg.RegisterGUID = g;
+            reg.Time = DateTime.Now;
+            
             if (db.Admins.Any(x => x.Email == admin.Email))
             {
                 var alert = "Email is already exist";
@@ -40,6 +45,7 @@ namespace OilContRM.Controllers
                 return View();
             }
             db.Admins.Add(admin);
+            db.RegisterLOG.Add(reg);
             db.SaveChanges();
 
             return RedirectToAction("Index", "YoneticiGiris");

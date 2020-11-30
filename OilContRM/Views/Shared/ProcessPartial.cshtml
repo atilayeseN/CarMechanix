@@ -1,0 +1,56 @@
+﻿@using OilContRM.Models;
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<OilContRM.Models.GetRecords>
+
+<div class="row">
+    <div class="col-sm-12">
+
+        <div class="card-box" style="margin-top:0">
+
+
+            <table class="table table-striped add-edit-table" id="datatable-editable">
+
+                <tr>
+                    <th>@Resources.Content.LicencePlate</th>
+                    <th>@Resources.Content.CarBranch</th>
+                    <th>Model</th>
+                    <th>@Resources.Content.Age</th>
+                    <th>@Resources.Content.Info</th>
+                    <th>@Resources.Content.CarMaintananceTime</th>
+                 
+
+
+
+
+
+
+                </tr>
+
+                <tbody>
+                    @foreach (var i in Model)
+                    {
+                        <tr class="gradeX">
+                            <td>@i.LicencePlate</td>
+                            <td>@i.Branch</td>
+                            <td>@i.Model</td>
+                            <td>@i.Description</td>
+                            <td><button class="btn btn-info" onclick="GetID(@i.ProcID);">@Resources.Content.Info</button></td>
+                            <td>@i.Time</td>
+
+
+
+
+
+
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>

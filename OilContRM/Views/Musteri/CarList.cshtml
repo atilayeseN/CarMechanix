@@ -4,12 +4,12 @@
 @{
     ViewBag.Title = "CarList";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
-    var a = ViewBag.ID;
+    var userid = ViewBag.ID;
     
 
 }
 
-<h2>CarList</h2>
+<h2>@Resources.Content.CarList</h2><form class="form form-control form-inline" action="/Musteri/Cuslist" method="get"><i class="fa fa-search" aria-hidden="true"></i><input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" name="search"></form>
 
 <head>
     <meta charset="utf-8" />
@@ -50,13 +50,13 @@
             <table class="table table-striped add-edit-table" id="datatable-editable">
 
                 <tr>
-                    <th>LicencePlate</th>
-                    <th>CarBranch</th>
+                    <th>@Resources.Content.LicencePlate</th>
+                    <th>@Resources.Content.CarBranch</th>
                     <th>Model</th>
-                    <th>Age</th>
-                    <th>Color</th>
-                    <th>OilDate</th>
-                    <th>Delete,Edit or Process to Car</th>
+                    <th>@Resources.Content.Age</th>
+                    <th>@Resources.Content.Color</th>
+                    <th>@Resources.Content.OilDate</th>
+                    <th>@Resources.Content.DeleteEditOrProcessToCar</th>
                     
 
 
@@ -66,33 +66,57 @@
                 </tr>
 
                 <tbody>
-                    @foreach (var car in Model)
+                    @if (Model.Count == 0)
                     {
-                    <tr class="gradeX">
-                        <td>@car.LicencePlate</td>
-                        <td>@car.CarBranch</td>
-                        <td>@car.Model</td>
-                        <td>@car.Age</td>
-                        <td>@car.Color</td>
-                        <td>@car.OilDate.Value.ToString("dd. MM. yyyy")</td>
+                        <tr>
+                            <td>NoResult</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var car in Model)
+                        {
+                            <tr class="gradeX">
+                                <td>@car.LicencePlate</td>
+                                <td>@car.CarBranch</td>
+                                <td>@car.Model</td>
+                                <td>@car.Age</td>
+                                <td>@car.Color</td>
+                                <td>@car.OilDate.Value.ToString("dd. MM. yyyy")</td>
 
 
-                        <td class="actions">
-                            <a href="/Musteri/DeleteCar/@car.ID" class="on-default edit-row" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-eraser"></i></a>
-                            <a href="/Musteri/EditCar/@car.ID" class="on-default edit-row" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-                            <a href="/Process/TakeProcess/@car.ID" class="on-default edit-row" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add Process"><i class="fa fa-wrench"></i></a>
-                        </td>
+                                <td class="actions">
+                                    <a href="/Musteri/DeleteCar/@car.ID" class="on-default edit-row" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-eraser"></i></a>
+                                    <a href="/Musteri/EditCar/@car.ID" class="on-default edit-row" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
+                                    <a href="/Process/TakeProcess/@car.ID" class="on-default edit-row" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add Process"><i class="fa fa-wrench"></i></a>
+                                </td>
 
-                        
 
-                    </tr>
+
+                            </tr>
+                        }
                     }
 
 
                 </tbody>
             </table>
-            <a href="/Musteri/AddCar/@a" class="btn btn-primary">Add New Car</a>
+            <button class="btn btn-primary" onclick="OpenFORM(@userid)">Add A Car</button>
 
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+
+            <div class="modal-body " id="formcontentModal">
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"></button>
+            </div>
         </div>
     </div>
 </div>
@@ -119,5 +143,19 @@
 <script src="~/assets/pages/datatables.editable.init.js"></script>
 
 <script>
-            $('#mainTable').editableTableWidget().numericInputExample().find('td:first').focus();
+    $('#mainTable').editableTableWidget().numericInputExample().find('td:first').focus();
+    
+        function OpenFORM(ID) {
+            $.ajax({
+                url: "/Musteri/AddCarFromModal?ID="+@userid,
+                success: function (returndata) {
+
+                    $('#formcontentModal').html(returndata);
+                    $('#formModal').modal('show');
+                },
+                dataType: "html"
+
+            });
+        }
+
 </script>

@@ -1,0 +1,73 @@
+﻿@using OilContRM.Models
+
+@model List<OilContRM.Models.GetRecords>
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<head>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <link href="~/Content/toastr.css" rel="stylesheet" />
+    <script src="~/Scripts/toastr.js"></script>
+</head>
+<h2>@Resources.Content.ContactToCustomer</h2>
+
+<table class="table table-striped" id="">
+
+    <tr>
+        <th>@Resources.Content.UserName</th>
+        <th>@Resources.Content.Time</th>
+        <th>@Resources.Content.Licence</th>
+        <th>@Resources.Content.Description</th>
+        <th>@Resources.Content.Call</th>
+        <th>@Resources.Content.NeverCall</th>
+    </tr>
+
+    <tbody>
+
+
+        @foreach (var i in Model){
+
+            <tr class="gradeX">
+                <td>@i.UserName</td>
+                <td>@i.Time</td>
+                <td>@i.LicencePlate</td>
+                <td>@i.Description</td>
+              
+                
+                <td>
+                    <a href="/Musteri/Called/@i.ProcID" class="fa fa-phone"></a>
+                </td>
+                <td>
+             
+                    <a href="@Url.Action("Called", "Musteri", new { id = i.ProcID , nevercall= 1 })" class="fa fa-warning"></a>
+                </td>
+
+
+
+
+
+            </tr>
+            
+
+           
+
+
+        }
+
+        
+
+
+
+    </tbody>
+
+</table>
+
+
+
+
+
+
+
+

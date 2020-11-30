@@ -1,5 +1,7 @@
 ﻿@using OilContRM.Models
-@model List<Users>
+@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<Users>
 
 @{
     ViewBag.Title = "CusList";
@@ -9,7 +11,37 @@
 
 
 }
-<h2>CustomerList</h2>
+<style>
+    .center {
+        text-align: center;
+    }
+
+    .pagination {
+    }
+
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+            border: 1px solid #ddd;
+            margin: 0 4px;
+        }
+
+            .pagination a.active {
+                background-color: #4CAF50;
+                color: white;
+                border: 1px solid #4CAF50;
+            }
+
+            .pagination a:hover:not(.active) {
+                background-color: #ddd;
+            }
+</style>
+<h2>@Resources.Content.CustomerList</h2><form class="form form-control form-inline"  action="/Musteri/Cuslist" method="get"><i class="fa fa-search" aria-hidden="true"></i><input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" name="search"></form>
+     
+
 
 <head>
     <meta charset="utf-8" />
@@ -26,13 +58,11 @@
     <link rel="stylesheet" href="~/plugins/jquery-datatables-editable/dataTables.bootstrap4.min.css" />
 
     <!-- App css -->
-    
-    
-    
-
     <script src="~/assets/js/modernizr.min.js"></script>
 
 </head>
+
+
 
 
 <div class="row">
@@ -45,11 +75,11 @@
             <table class="table table-striped add-edit-table" id="datatable-editable">
 
                 <tr>
-                    <th>Name</th>
-                    <th>Surname</th>
-                    <th>Telephone</th>
-                    <th>Email</th>
-                    <th>Processes</th>
+                    <th>@Resources.Content.Name</th>
+                    <th>@Resources.Content.Surname</th>
+                    <th>@Resources.Content.Telephone</th>
+                    <th>@Resources.Content.Email</th>
+                    <th>@Resources.Content.EditCustomer</th>
 
 
 
@@ -58,8 +88,15 @@
 
                 </tr>
 
-                <tbody>
-                    @foreach (var us in Model)
+                <tboy>
+                    @if (Model.Count == 0)
+                    {
+                        <tr>
+                            <td>NoResult</td>
+                        </tr>
+                    }
+                    else{
+                    foreach (var us in Model)
                     {
                         <tr class="gradeX">
                             <td>@us.Name</td>
@@ -76,17 +113,59 @@
                             </td>
                         </tr>
                     }
+                    }
 
 
-                </tbody>
+
+
+
+                </tboy>
             </table>
-            <a href="Add" class="btn btn-primary">Add New Custommer</a>
+            @Html.PagedListPager(Model, page => Url.Action("CusList",
+   new { page }), new PagedListRenderOptions()
+   {
+
+
+   })
+            <button class="btn btn-primary" type="button" onclick="OpenFORM()">@Resources.Content.AddACustomer</button>
+
+
+
 
         </div>
     </div>
 </div>
 
 
+<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+
+            <div class="modal-body " id="formcontentModal">
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"></button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function OpenFORM() {
+        $.ajax({
+            url: "/Musteri/AddCustomerFromModal",
+            success: function (returndata) {
+
+                $('#formcontentModal').html(returndata);
+                $('#formModal').modal('show');
+            },
+            dataType: "html"
+
+        });
+    }
+</script>
 
 
 

@@ -60,7 +60,7 @@
 
                             <div class="form-group row">
 
-                                <label class="col-2 col-form-label">Name</label>
+                                <label class="col-2 col-form-label">@Resources.Content.Name</label>
 
                                 <div class="col-10">
                                     @Html.TextBoxFor(a=> a.name,new {@class="form-control" , maxlenght=20, autocomplete = "off" })
@@ -70,7 +70,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-2 col-form-label" for="surname">Surname</label>
+                                <label class="col-2 col-form-label" for="surname">@Resources.Content.Surname</label>
                                 <div class="col-10">
                                     @Html.TextBoxFor(a => a.surname, new { @class = "form-control", maxlenght = 20, autocomplete = "off" })
                                 </div>
@@ -86,7 +86,7 @@
 
 
                             <div class="form-group row">
-                                <label class="col-2 col-form-label" for="tel">Tel</label>
+                                <label class="col-2 col-form-label" for="tel">@Resources.Content.Telephone</label>
                                 <div class="col-md-10">
                                     @Html.TextBoxFor(a => a.tel, new { @class = "form-control", maxlength = 11, autocomplete = "off" })
                                 </div>

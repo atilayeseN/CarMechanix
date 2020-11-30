@@ -48,8 +48,9 @@
                     <div class="p-20">
                         @using (Html.BeginForm())
                         {
+                            
                             <div class="form-group row">
-                                <label class="col-2 col-form-label">LicencePlate</label>
+                                <label class="col-2 col-form-label">@Resources.Content.LicencePlate</label>
                                 <div class="col-10">
                                     @Html.TextBoxFor(a => a.licence, new { @class = "uppercase form-control", required = "required" })
                                 </div>
@@ -69,19 +70,19 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-2 col-form-label" for="tel">Age</label>
+                                <label class="col-2 col-form-label" for="tel">@Resources.Content.Age</label>
                                 <div class="col-md-10">
                                     @Html.TextBoxFor(a => a.age, new { @class = "form-control", required = "required" })
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-2 col-form-label" for="tel">Color</label>
+                                <label class="col-2 col-form-label" for="tel">@Resources.Content.Color</label>
                                 <div class="col-md-10">
                                     @Html.TextBoxFor(a => a.color, new { @class = "form-control", required = "required" })
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-2 col-form-label" for="tel">Color</label>
+                                <label class="col-2 col-form-label" for="tel">@Resources.Content.OilDate</label>
                                 <div class="col-md-10">
                                     @Html.TextBoxFor(a => a.foil, new { @class = "form-control", required = "required",type="date" })
                                 </div>

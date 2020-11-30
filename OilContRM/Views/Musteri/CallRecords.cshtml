@@ -1,0 +1,84 @@
+﻿
+@using PagedList.Mvc;
+@using PagedList;
+@model  IPagedList<OilContRM.Models.CallRecord>
+@{
+    ViewBag.Title = "CallRecords";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<style>
+    .center {
+        text-align: center;
+    }
+
+    .pagination {
+    }
+
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+            border: 1px solid #ddd;
+            margin: 0 4px;
+        }
+
+            .pagination a.active {
+                background-color: #4CAF50;
+                color: white;
+                border: 1px solid #4CAF50;
+            }
+
+            .pagination a:hover:not(.active) {
+                background-color: #ddd;
+            }
+</style>
+<h2>@Resources.Content.CallRecords</h2><form class="form form-control form-inline" action="/Musteri/CallRecords" method="get"><i class="fa fa-search" aria-hidden="true"></i><input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" name="search"></form>
+
+<table class="table table-striped" id="">
+
+    <tr>
+
+        <th>@Resources.Content.CustomerName</th>
+        <th>@Resources.Content.Time</th>
+        <th>@Resources.Content.Car</th>
+        <th>@Resources.Content.Telephone</th>
+    </tr>
+
+    <tbody>
+
+
+        @foreach (var i in Model)
+        {
+
+            <tr class="gradeX">
+                <td>@i.CustomerName</td>
+                <td>@i.Time</td>
+                <td>@i.Car</td>
+                <td>@i.Telephone</td>
+
+
+
+
+
+
+            </tr>
+
+
+        }
+
+
+
+
+
+    </tbody>
+
+</table>
+@Html.PagedListPager(Model, page => Url.Action("CallRecords",
+new { page }), new PagedListRenderOptions()
+{
+
+
+})

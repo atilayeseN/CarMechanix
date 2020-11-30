@@ -1,0 +1,133 @@
+﻿@model OilContRM.Models.CarModel
+@{
+    
+    Layout = null;
+}
+
+<h2>AddCar</h2>
+<head>
+    <style>
+        .uppercase {
+            text-transform: uppercase;
+        }
+    </style>
+    <meta charset="utf-8" />
+    <title>Ubold - Responsive Admin Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Coderthemes" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <!-- App css -->
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/icons.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/style.css" rel="stylesheet" type="text/css" />
+
+    <script src="~/assets/js/modernizr.min.js"></script>
+
+</head>
+
+
+
+
+
+<!-- Navigation Bar-->
+<!-- Page-Title -->
+<!-- end page title end breadcrumb -->
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card-box">
+
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="p-20">
+                        @using (Html.BeginForm("AddCarFromModal"))
+                        {
+
+                            <div class="form-group row">
+                                <label class="col-2 col-form-label">@Resources.Content.LicencePlate</label>
+                                <div class="col-10">
+                                    @Html.TextBoxFor(a => a.licence, new { @class = "uppercase form-control", required = "required" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-2 col-form-label" for="surname">CarBranch</label>
+                                <div class="col-10">
+                                    @Html.TextBoxFor(a => a.branch, new { @class = "form-control", required = "required" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label class="col-2 col-form-label" for="tel">Model</label>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(a => a.model, new { @class = "form-control", required = "required" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-2 col-form-label" for="tel">@Resources.Content.Age</label>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(a => a.age, new { @class = "form-control", required = "required" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-2 col-form-label" for="tel">@Resources.Content.Color</label>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(a => a.color, new { @class = "form-control", required = "required" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-2 col-form-label" for="tel">@Resources.Content.OilDate</label>
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(a => a.foil, new { @class = "form-control", required = "required", type = "date" })
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+                            <button class="btn btn-primary" type="submit">Add</button>
+                        }
+                        @{
+                            var data = ViewBag.Message;
+                            if (data != null)
+                            {
+                                <script type="text/javascript">
+                               window.onload = function () {
+                                   alert("@ViewBag.Message");
+                               }
+
+                                </script>
+                            }
+                        }
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- end row -->
+
+        </div> <!-- end card-box -->
+    </div><!-- end col -->
+</div>
+<!-- end row -->
+<!-- End Footer -->
+<!-- jQuery  -->
+<script src="~/assets/js/jquery.min.js"></script>
+<script src="~/assets/js/popper.min.js"></script><!-- Popper for Bootstrap -->
+<script src="~/assets/js/bootstrap.min.js"></script>
+<script src="~/assets/js/waves.js"></script>
+<script src="~/assets/js/jquery.slimscroll.js"></script>
+<script src="~/assets/js/jquery.scrollTo.min.js"></script>
+
+<!-- App js -->
+<script src="~/assets/js/jquery.core.js"></script>
+<script src="~/assets/js/jquery.app.js"></script>
