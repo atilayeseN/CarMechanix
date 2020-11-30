@@ -21,7 +21,7 @@
     <script src="~/assets/js/modernizr.min.js"></script>
 
 </head>
-<body  >
+<body>
 
     <div class="account-pages"></div>
     <div class="clearfix"></div>
@@ -33,27 +33,24 @@
 
 
             <div class="p-20">
-                <form class="form-horizontal m-t-20" action="/YoneticiGiris/Authorize" method="post" autocomplete="off">
-                    
-                    
+                <form class="form-horizontal m-t-20" action="/YoneticiGiris/Authorize" method="post">
 
                     <div class="form-group ">
                         <div class="col-12">
-                            <input class="form-control" type="text" required="" placeholder="Username" name="uname" autocomplete="on">
+                            <input class="form-control" type="text" required="" placeholder="Username" name="uname">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-12">
-                            <input class="form-control" type="password" required="" placeholder="Password" name="pass" autocomplete="new-password">
+                            <input class="form-control" type="password" required="" placeholder="Password" name="pass">
                         </div>
                     </div>
 
                     <div class="form-group ">
                         <div class="col-12">
                             <div class="checkbox checkbox-primary">
-                                <input id="checkbox-signup" type="checkbox" name="rememberme" checked="">
-      
+                                <input id="checkbox-signup" type="checkbox">
                                 <label for="checkbox-signup">
                                     Remember me
                                 </label>
@@ -65,7 +62,7 @@
                     <div class="form-group text-center m-t-40">
                         <div class="col-12">
                             <button class="btn btn-pink btn-block text-uppercase waves-effect waves-light"
-                                    type="submit" onclick="TorF()">
+                                    type="submit">
                                 Log In
                             </button>
                         </div>
@@ -88,43 +85,21 @@
                 <p>
                     Don't have an account? <a href="/YeniYonetici/Submit" class="text-primary m-l-5"><b>Sign Up</b></a>
                 </p>
-               
+
             </div>
         </div>
 
     </div>
-    @{
-        var data = Session["Error"];
-        if (data != null)
-        {
-            <script type="text/javascript">
-                               window.onload = function () {
-                                   alert("@Session["Error"]");
-                               }
 
-            </script>
-            Session.Remove("Error");
-        }
-        else
-        {
-            Session.Remove("Error");
-        }
-    }
 
-    <script>
-        function TorF() {
-            var check = document.getElementById("checkbox-signup").checked;
-            document.getElementById("demo").innerHTML = check;
-            
-        }
-    </script>
+    <!-- jQuery  -->
     <script src="~/assets/js/jquery.min.js"></script>
     <script src="~/assets/js/popper.min.js"></script><!-- Popper for Bootstrap -->
     <script src="~/assets/js/bootstrap.min.js"></script>
     <script src="~/assets/js/waves.js"></script>
     <script src="~/assets/js/jquery.slimscroll.js"></script>
     <script src="~/assets/js/jquery.scrollTo.min.js"></script>
-    
+
     <!-- App js -->
     <script src="~/assets/js/jquery.core.js"></script>
     <script src="~/assets/js/jquery.app.js"></script>

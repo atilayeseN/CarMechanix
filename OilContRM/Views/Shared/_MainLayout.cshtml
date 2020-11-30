@@ -15,7 +15,7 @@
     <link href="~/assets/css/icons.css" rel="stylesheet" type="text/css" />
     <link href="~/assets/css/style.css" rel="stylesheet" type="text/css" />
 
-
+    <script src="assets/js/modernizr.min.js"></script>
 
 </head>
 
@@ -27,30 +27,18 @@
     <header id="topnav">
         <div class="topbar-main">
             <div class="container-fluid">
-                
+
                 <!-- Logo container-->
                 <div class="logo">
-                    <a href="/Musteri/Index/" class="logo">
+                    <a href="/Musteri/Index" class="logo">
                         <img src="~/Content/images/_LOGO.jpg" alt="" height="50" width="85" class="logo-lg">
-                        
-                        
-                        
+
                     </a>
                 </div>
-
                 <!-- End Logo container-->
                 <!-- end menu-extras -->
-                <form class="float-right" action="/UploadImg/ImageUpload" method="post" enctype="multipart/form-data" style="display:inline">
-                    <label class="label label-primary">@Resources.Content.ChangeLOGO:</label>
-                    <label for="imageUpload" class="fa fa-2x fa-user-circle"></label>
-                    <input type="file" class="btn btn-primary" id="imageUpload" placeholder="asdf" value="ChangePP" onchange="this.form.submit()" name="uploadfile" style="display: none" />
-                    <label class="label label-primary">@Resources.Content.ChangeLanguage:</label>
-                    <a href="@Url.Action("Index","Musteri",new {lang="tr"})"><img border="0" alt="TR" src="~/Content/turkey.png" width="85" height="50" /></a>
-                    <a href="@Url.Action("Index","Musteri",new {lang="en"})"><img border="0" alt="TR" src="~/Content/uk.png" width="85" height="50" /></a>
-                    
-                    <a href="/YoneticiGiris/Logout" class="btn btn-danger">@Resources.Content.Logout</a>
-
-
+                <form class="float-right" action="/UploadImg/ImageUpload" method="post" enctype="multipart/form-data">
+                    <input type="file" placeholder="asdf" value="ChangePP" onchange="this.form.submit()" name="uploadfile" />
                 </form>
 
                 <div class="clearfix"></div>
@@ -58,6 +46,7 @@
             </div> <!-- end container -->
         </div>
         <!-- end topbar-main -->
+
         <div class="navbar-custom">
             <div class="container-fluid">
                 <div id="navigation">
@@ -66,33 +55,21 @@
 
 
                         <li class="has-submenu">
-                            <a href="@Url.Action("Index","Musteri",new {lang=Session["lang"]})"><i class="md md-dashboard"></i>@Resources.Content.Stats</a>
-                        </li>
+                            <a href="/Musteri/Index"><i class="md md-dashboard"></i>Stats</a>
 
-                        <li class="has-submenu">
-                            <a href="@Url.Action("CusList","Musteri",new {lang=Session["lang"]})"><i class="md md-account-child"></i>@Resources.Content.CustomerList</a>
-                        </li>
-
-                        <li class="has-submenu">
-                            <a href="@Url.Action("ShowProcess","Process",new {lang=Session["lang"]})"><i class="md md-book"></i>@Resources.Content.ProcessRecords</a>
-
-                        </li>
-                        <li class="has-submenu">
-                            <a href="@Url.Action("Contact","Musteri",new {lang=Session["lang"]})"><i class="md md-phone"></i>@Resources.Content.ContactToCustomer</a>
-
-                        </li>
-                        <li class="has-submenu">
-                            <a href="@Url.Action("CallRecords","Musteri",new {lang=Session["lang"]})"><i class="md md-tablet"></i>@Resources.Content.CallRecords</a>
 
                         </li>
 
                         <li class="has-submenu">
-
-
-
-
+                            <a href="/Musteri/CusList"><i class="md md-color-lens"></i>Users</a>
 
                         </li>
+
+                        <li class="has-submenu">
+                            <a href="/Process/ShowProcess"><i class="md md-color-lens"></i>Process Records</a>
+
+                        </li>
+
 
 
 
@@ -111,26 +88,21 @@
         </div> <!-- end navbar-custom -->
     </header>
     <!-- End Navigation Bar-->
-
-
+   
+    
 
 
     <div class="wrapper">
         <!-- end container -->@RenderBody()
     </div>
-
-    @RenderSection("scripts", false)
-
-
-
-
+    
     <!-- end wrapper -->
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    © 2019-2020 Yirmibeş Yazılım
+                    © 2016 - 2018 UBold - Coderthemes.com
                 </div>
             </div>
         </div>
@@ -151,7 +123,6 @@
     <!-- App js -->
     <script src="~/assets/js/jquery.core.js"></script>
     <script src="~/assets/js/jquery.app.js"></script>
-
 
 </body>
 </html>

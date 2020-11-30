@@ -11,7 +11,7 @@ namespace OilContRM.Models
     {
         fuelrmEntities db = new fuelrmEntities();   
         
-        
+   
         public int carid { get; set; }
         public string licence { get; set; }
         public string oiltype { get; set; }

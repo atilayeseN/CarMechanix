@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -22,9 +21,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink( "Index", "Home")</li>
+                    <li>@Html.ActionLink("Giriş Sayfası", "Index", "Home")</li>
                     <li>@Html.ActionLink("Hakkında", "About", "Home")</li>
-                    <li>@Html.ActionLink("İletişim", "Contact", "Home")</li>
                     <li>@Html.ActionLink("İletişim", "Contact", "Home")</li>
                 </ul>
             </div>
@@ -39,7 +37,7 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
-   
+    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>

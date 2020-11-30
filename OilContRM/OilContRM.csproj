@@ -25,7 +25,6 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,12 +52,6 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
-    </Reference>
-    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Activities" />
     <Reference Include="System.Data" />
@@ -133,21 +126,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_GlobalResources\Content.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Content.resx</DependentUpon>
-    </Compile>
-    <Compile Include="App_GlobalResources\Content.en.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Content.en.resx</DependentUpon>
-    </Compile>
-    <Compile Include="App_GlobalResources\Content.tr.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Content.tr.resx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -160,12 +138,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Language.en.Designer.cs" />
-    <Compile Include="Language.tr.Designer.cs" />
     <Compile Include="Models\Admins.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\CallRecord.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CarInfo.cs">
@@ -176,10 +149,6 @@
     </Compile>
     <Compile Include="Models\CarModel.cs" />
     <Compile Include="Models\GetRecords.cs" />
-    <Compile Include="Models\Login_LOG.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModalData.cs" />
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -206,9 +175,6 @@
     </Compile>
     <Compile Include="Models\ProcessModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
-    <Compile Include="Models\RegisterLOG.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -2290,14 +2256,10 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\PagedList.css" />
-    <Content Include="Content\pagination.css" />
     <Content Include="Content\sweetalert\bootstrap-sweetalert.png" />
     <Content Include="Content\sweetalert\docs.css" />
     <Content Include="Content\sweetalert\sweet-alert.css" />
     <Content Include="Content\sweetalert\thumbs-up.jpg" />
-    <Content Include="Content\toastr.css" />
-    <Content Include="Content\toastr.min.css" />
     <Content Include="email-templates\action.html" />
     <Content Include="email-templates\alert.html" />
     <Content Include="email-templates\billing.html" />
@@ -3334,8 +3296,6 @@
     <Content Include="Content\sweetalert\sweet-alert-animations.less" />
     <Content Include="Content\bootstrap\variables.less" />
     <Content Include="Content\bootstrap\mixins.less" />
-    <Content Include="Content\toastr.scss" />
-    <Content Include="Content\toastr.less" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -3347,10 +3307,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\pagination.js" />
-    <Content Include="Scripts\pagination.min.js" />
-    <Content Include="Scripts\toastr.js" />
-    <Content Include="Scripts\toastr.min.js" />
     <Content Include="swalert.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -3390,17 +3346,7 @@
     <Content Include="Views\YoneticiGiris\SendEmail.cshtml" />
     <Content Include="Views\YoneticiGiris\RePassword.cshtml" />
     <Content Include="Views\Musteri\SendEmail.cshtml" />
-    <Content Include="Views\Shared\Modal.cshtml" />
-    <Content Include="Views\Process\Explain.cshtml" />
-    <Content Include="Views\Process\AddProcessFromModal.cshtml" />
-    <Content Include="Views\Musteri\Contact.cshtml" />
-    <Content Include="Views\Musteri\CallRecords.cshtml" />
-    <Content Include="Views\Process\Process.cshtml" />
-    <Content Include="Views\Shared\ProcessPartial.cshtml" />
     <Content Include="Views\Process\ProcessModal.cshtml" />
-    <Content Include="Views\Shared\_Language.cshtml" />
-    <Content Include="Views\Musteri\AddCustomerFromModal.cshtml" />
-    <Content Include="Views\Musteri\AddCarFromModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3423,22 +3369,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_GlobalResources\Content.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Content.Designer.cs</LastGenOutput>
-    </Content>
-    <Content Include="App_GlobalResources\Content.en.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Content.en.designer.cs</LastGenOutput>
-    </Content>
-    <Content Include="App_GlobalResources\Content.tr.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Content.tr.designer.cs</LastGenOutput>
-    </Content>
-    <EmbeddedResource Include="Language.en.resx" />
-    <EmbeddedResource Include="Language.tr.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

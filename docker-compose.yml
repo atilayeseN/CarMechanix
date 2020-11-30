@@ -1,8 +1,0 @@
-version: '3.4'
-
-services:
-  oilcontrm:
-    image: ${DOCKER_REGISTRY-}oilcontrm
-    build:
-      context: .\OilContRM
-      dockerfile: Dockerfile

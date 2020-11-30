@@ -7,7 +7,7 @@
 
 }
 
-<h2>@Resources.Content.AddProcess </h2>  <h4>to @ViewBag.name @ViewBag.model Plate: @ViewBag.licence</h4>
+<h2>AddProcess</h2>  <h4>to @ViewBag.name @ViewBag.model Plate: @ViewBag.licence</h4><h4>
 <head>
     <meta charset="utf-8" />
     <title>Ubold - Responsive Admin Dashboard Template</title>
@@ -46,7 +46,7 @@
                 <div class="col-12">
                     <div class="p-20">
                         <div class="form-group row">
-                            <label class="col-2 col-form-label">@Resources.Content.ChooseType</label>
+                            <label class="col-2 col-form-label">ChooseType</label>
                             <div class="col-10">
                                 @Html.DropDownListFor(m => m.type, (List<SelectListItem>)ViewBag.Types, new { @class = "form-control" })
                             </div>
@@ -54,7 +54,7 @@
 
 
                         <div class="form-group row">
-                            <label class="col-2 col-form-label">@Resources.Content.ChooseProduct</label>
+                            <label class="col-2 col-form-label">ChooseProduct</label>
                             <div class="col-10">
                                 @Html.DropDownListFor(m => m.productid, (List<SelectListItem>)ViewBag.Products, new { @class = "form-control" })
                             </div>
@@ -62,13 +62,13 @@
 
 
                         <div class="form-group row">
-                            <label class="col-2 col-form-label">@Resources.Content.Description</label>
+                            <label class="col-2 col-form-label">Desctription</label>
                             <div class="col-10">
                                 @Html.TextBoxFor(m => m.describtion, new { @class = "form-control" })
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-2 col-form-label">@Resources.Content.Details</label>
+                            <label class="col-2 col-form-label">Details</label>
                             <div class="col-10">
                                 @Html.TextAreaFor(m => m.details, new { @class = "form-control" })
                             </div>

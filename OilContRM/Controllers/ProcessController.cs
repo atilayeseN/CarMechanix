@@ -5,10 +5,6 @@ using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using OilContRM.Models;
-using PagedList.Mvc;
-using PagedList;
-using System.Globalization;
-using System.Threading;
 
 namespace OilContRM.Controllers
 {
@@ -26,13 +22,7 @@ namespace OilContRM.Controllers
             {
                 return RedirectToAction("Index", "YoneticiGiris");
             }
-            else {
-                if (Session["lang"] == null)
-                {
-                    Session["lang"] = "en";
-                }
-                Thread.CurrentThread.CurrentCulture = new CultureInfo(Session["lang"].ToString());
-                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Session["lang"].ToString());
+            else { 
                 fuelrmEntities db = new fuelrmEntities();
             var carname = (from n in db.CarInfo
                            where n.ID == id
@@ -66,9 +56,8 @@ namespace OilContRM.Controllers
             {
                 return RedirectToAction("Index", "YoneticiGiris");
             }
-            else {
-               
-                var cid = Convert.ToInt32(TempData["id"]);
+            else { 
+            var cid = Convert.ToInt32(TempData["id"]);
             fuelrmEntities db = new fuelrmEntities();
             ProcessContent content = new ProcessContent();
             content.Description = p.details;
@@ -78,7 +67,7 @@ namespace OilContRM.Controllers
                                 where i.PRODUCT_CODE == p.productid.ToString()
                                 select i
                               ).FirstOrDefault();
-            content.ProductName = prodname.PRODUCT_NAME;
+                content.ProductName = prodname.PRODUCT_NAME;
             db.ProcessContent.Add(content);
             ProcessINFO process = new ProcessINFO();
             process.ContentID = content.ID;
@@ -86,12 +75,14 @@ namespace OilContRM.Controllers
             process.Time = DateTime.Now;
             process.AdminID = Convert.ToInt32(Session["UserID"]);
             process.CarID = Convert.ToInt32(cid);
-            process.IsCalled = false;
             db.ProcessINFO.Add(process);
             db.SaveChanges();
 
 
-            
+            var query = (from car in db.CarInfo
+                         where car.ID == cid
+                         select car.UserID).FirstOrDefault();
+
 
 
 
@@ -102,29 +93,21 @@ namespace OilContRM.Controllers
         }
 
 
-        [HttpGet]
-        public ActionResult ShowProcess(string search,int page=1)
+        
+        public ActionResult ShowProcess()
         {
             if (Session["UserID"] == null)
             {
                 return RedirectToAction("Index", "YoneticiGiris");
             }
-            else {
-                if (Session["lang"] == null)
-                {
-                    Session["lang"] = "en";
-                }
-                Thread.CurrentThread.CurrentCulture = new CultureInfo(Session["lang"].ToString());
-                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Session["lang"].ToString());
-                fuelrmEntities db = new fuelrmEntities();
-            
+            else { 
+            fuelrmEntities db = new fuelrmEntities();
+       
             var procquery = (from proc in db.ProcessContent
                              join procj in db.ProcessINFO on proc.ID equals procj.ContentID
                              join car in db.CarInfo on procj.CarID equals car.ID
-                             join user in db.Users on car.UserID equals user.ID
                              select new GetRecords
                              {
-                        CarID = car.ID,
                         Branch = car.CarBranch,
                         Model = car.Model,
                         Color = car.Color,
@@ -133,30 +116,20 @@ namespace OilContRM.Controllers
                         Description=procj.Description,
                         Explain=proc.Description,
                         ProcID=procj.ID,
-                        UserName=user.Name
                         
                        
 
 
-                    });
+                    }).ToList();
+            
+            
 
 
-          
-              
-        
-               
 
-            return View(procquery.Where(x => x.LicencePlate.Contains(search) || search == null).ToList().OrderBy(m=>m.LicencePlate).ToPagedList(page,5));
-                }
+
+            return View(procquery);
             }
-        
-        
-
-
-
-
-
-
+        }
         public ActionResult DeleteProcess(int id)
         {
             fuelrmEntities db = new fuelrmEntities();
@@ -216,85 +189,18 @@ namespace OilContRM.Controllers
 
             return RedirectToAction("ShowProcess");
         }
-        [HttpGet]
-        public ActionResult Explain(int id)
+        public ActionResult ProcessModal(int id)
         {
             fuelrmEntities db = new fuelrmEntities();
-            var process = db.ProcessINFO.Find(id);
-            var contid = process.ContentID;
-            var content = db.ProcessContent.Find(contid);
+            var procinf = db.ProcessINFO.Find(id);
+            var proccont = db.ProcessContent.Find(procinf.ContentID);
 
-           
-            return PartialView(content);
+            return PartialView(proccont);
+
+            
         }
-        public ActionResult AddProcessFromModal()
-        {
-            if (Session["lang"] == null)
-            {
-                Session["lang"] = "en";
-            }
-            Thread.CurrentThread.CurrentCulture = new CultureInfo(Session["lang"].ToString());
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo(Session["lang"].ToString());
-            fuelrmEntities db = new fuelrmEntities();
-            List<SelectListItem> plates = (from i in db.CarInfo.ToList()
-                                           where i.IsDelete == false
-                                          select new SelectListItem
-                                          {
-                                              Text = i.LicencePlate,
-                                              Value = i.ID.ToString()
-                                          }).ToList();
-            List<SelectListItem> products = (from i in db.URUNLISTEM.ToList()
-                                          select new SelectListItem
-                                          {
-                                              Text = i.PRODUCT_NAME,
-                                              Value = i.PRODUCT_CODE.ToString()
-                                          }).ToList();
-            List<SelectListItem> types = (from i in db.URUNLISTEM.ToList()
-                                             select new SelectListItem
-                                             {
-                                                 Text = i.PRODUCT_TYPE,
-                                                 Value = i.PRODUCT_CODE.ToString()
-                                             }).ToList();
-            ViewBag.Licence = plates;
-            ViewBag.Products = products;
-            ViewBag.Types = types;
-
-            return PartialView();
-        }
-        [HttpPost]
-        public ActionResult AddProcessFromModal(ModalData records)
-        {
-            fuelrmEntities db = new fuelrmEntities();
-
-            ProcessContent content = new ProcessContent();
-            content.Type = records.type;
-            content.Description = records.details;
-            content.ProuctID = records.product;
-            var prodname = (from i in db.URUNLISTEM
-                            where i.PRODUCT_CODE == records.product.ToString()
-                            select i.PRODUCT_NAME).FirstOrDefault();
-            content.ProductName = prodname;
-            db.ProcessContent.Add(content);
-            ProcessINFO info = new ProcessINFO();
-            info.Description = records.description;
-            info.ContentID = content.ID;
-            info.CarID = Convert.ToInt32(records.licence);
-            info.Time = DateTime.Now;
-            info.AdminID = Convert.ToInt32(Session["UserID"]);
-            info.IsCalled = false;
-            db.ProcessINFO.Add(info);
-            db.SaveChanges();
-
-
-
-            return RedirectToAction("ShowProcess");
-        }
-       
-
-
-
-
-
+        
+     
 
 
 

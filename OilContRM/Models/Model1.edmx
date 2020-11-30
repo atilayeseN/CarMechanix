@@ -13,20 +13,7 @@
           <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
-          <Property Name="LogGUID" Type="nvarchar(max)" />
-          <Property Name="RegGUID" Type="nvarchar(max)" />
-        </EntityType>
-        <EntityType Name="CallRecord">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProcessID" Type="int" Nullable="false" />
-          <Property Name="Time" Type="datetime" Nullable="false" />
-          <Property Name="CustomerName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Car" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="LicencePlate" Type="nchar" MaxLength="9" Nullable="false" />
-          <Property Name="Telephone" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="CarInfo">
           <Key>
@@ -56,14 +43,6 @@ warning 6002: The table/view 'fuelrm.dbo.CompanyDatas' does not have a primary k
           <Property Name="StoreNumber" Type="int" Nullable="false" />
           <Property Name="Customers" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Login_LOG">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Guid" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Time" Type="datetime" Nullable="false" />
-        </EntityType>
         <EntityType Name="Password_LOG">
           <Key>
             <PropertyRef Name="ID" />
@@ -92,15 +71,6 @@ warning 6002: The table/view 'fuelrm.dbo.CompanyDatas' does not have a primary k
           <Property Name="CarID" Type="int" />
           <Property Name="Time" Type="datetime" />
           <Property Name="AdminID" Type="int" />
-          <Property Name="IsCalled" Type="bit" />
-        </EntityType>
-        <EntityType Name="RegisterLOG">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RegisterGUID" Type="nvarchar(max)" />
-          <Property Name="Time" Type="datetime" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -122,7 +92,6 @@ warning 6002: The table/view 'fuelrm.dbo.CompanyDatas' does not have a primary k
           <Property Name="Telephone" Type="nvarchar" MaxLength="11" />
           <Property Name="IsDeleted" Type="bit" />
           <Property Name="Email" Type="nchar" MaxLength="320" />
-          <Property Name="NeverCall" Type="bit" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'fuelrm.dbo.URUNLISTEM' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -186,13 +155,10 @@ warning 6002: The table/view 'fuelrm.dbo.URUNLISTEM' does not have a primary key
         </Association>
         <EntityContainer Name="fuelrmModelStoreContainer">
           <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CallRecord" EntityType="Self.CallRecord" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CarInfo" EntityType="Self.CarInfo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Login_LOG" EntityType="Self.Login_LOG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Password_LOG" EntityType="Self.Password_LOG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProcessContent" EntityType="Self.ProcessContent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProcessINFO" EntityType="Self.ProcessINFO" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="RegisterLOG" EntityType="Self.RegisterLOG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompanyDatas" EntityType="Self.CompanyDatas" store:Type="Tables" store:Schema="dbo">
@@ -233,13 +199,10 @@ warning 6002: The table/view 'fuelrm.dbo.URUNLISTEM' does not have a primary key
       <Schema Namespace="fuelrmModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="fuelrmEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Admins" EntityType="fuelrmModel.Admins" />
-          <EntitySet Name="CallRecord" EntityType="fuelrmModel.CallRecord" />
           <EntitySet Name="CarInfo" EntityType="fuelrmModel.CarInfo" />
-          <EntitySet Name="Login_LOG" EntityType="fuelrmModel.Login_LOG" />
           <EntitySet Name="Password_LOG" EntityType="fuelrmModel.Password_LOG" />
           <EntitySet Name="ProcessContent" EntityType="fuelrmModel.ProcessContent" />
           <EntitySet Name="ProcessINFO" EntityType="fuelrmModel.ProcessINFO" />
-          <EntitySet Name="RegisterLOG" EntityType="fuelrmModel.RegisterLOG" />
           <EntitySet Name="sysdiagrams" EntityType="fuelrmModel.sysdiagrams" />
           <EntitySet Name="Users" EntityType="fuelrmModel.Users" />
           <EntitySet Name="CompanyDatas" EntityType="fuelrmModel.CompanyDatas" />
@@ -269,21 +232,8 @@ warning 6002: The table/view 'fuelrm.dbo.URUNLISTEM' does not have a primary key
           <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LogGUID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="RegGUID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Guid" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ProcessINFO" Relationship="fuelrmModel.FK_ProcessINFO_Admins" FromRole="Admins" ToRole="ProcessINFO" />
-        </EntityType>
-        <EntityType Name="CallRecord">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProcessID" Type="Int32" Nullable="false" />
-          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Car" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LicencePlate" Type="String" Nullable="false" MaxLength="9" FixedLength="true" Unicode="true" />
-          <Property Name="Telephone" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="CarInfo">
           <Key>
@@ -300,14 +250,6 @@ warning 6002: The table/view 'fuelrm.dbo.URUNLISTEM' does not have a primary key
           <Property Name="IsDelete" Type="Boolean" />
           <NavigationProperty Name="Users" Relationship="fuelrmModel.FK_CarInfo_Users" FromRole="CarInfo" ToRole="Users" />
           <NavigationProperty Name="ProcessINFO" Relationship="fuelrmModel.FK_ProcessINFO_CarInfo" FromRole="CarInfo" ToRole="ProcessINFO" />
-        </EntityType>
-        <EntityType Name="Login_LOG">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Guid" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="Password_LOG">
           <Key>
@@ -338,18 +280,9 @@ warning 6002: The table/view 'fuelrm.dbo.URUNLISTEM' does not have a primary key
           <Property Name="CarID" Type="Int32" />
           <Property Name="Time" Type="DateTime" Precision="3" />
           <Property Name="AdminID" Type="Int32" />
-          <Property Name="IsCalled" Type="Boolean" />
           <NavigationProperty Name="Admins" Relationship="fuelrmModel.FK_ProcessINFO_Admins" FromRole="ProcessINFO" ToRole="Admins" />
           <NavigationProperty Name="CarInfo" Relationship="fuelrmModel.FK_ProcessINFO_CarInfo" FromRole="ProcessINFO" ToRole="CarInfo" />
           <NavigationProperty Name="ProcessContent" Relationship="fuelrmModel.FK_ProcessINFO_ProcessContent" FromRole="ProcessINFO" ToRole="ProcessContent" />
-        </EntityType>
-        <EntityType Name="RegisterLOG">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RegisterGUID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Time" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -371,7 +304,6 @@ warning 6002: The table/view 'fuelrm.dbo.URUNLISTEM' does not have a primary key
           <Property Name="Telephone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
           <Property Name="IsDeleted" Type="Boolean" />
           <Property Name="Email" Type="String" MaxLength="320" FixedLength="true" Unicode="true" />
-          <Property Name="NeverCall" Type="Boolean" />
           <NavigationProperty Name="CarInfo" Relationship="fuelrmModel.FK_CarInfo_Users" FromRole="Users" ToRole="CarInfo" />
         </EntityType>
         <EntityType Name="CompanyDatas">
@@ -453,24 +385,10 @@ warning 6002: The table/view 'fuelrm.dbo.URUNLISTEM' does not have a primary key
           <EntitySetMapping Name="Admins">
             <EntityTypeMapping TypeName="fuelrmModel.Admins">
               <MappingFragment StoreEntitySet="Admins">
-                <ScalarProperty Name="RegGUID" ColumnName="RegGUID" />
-                <ScalarProperty Name="LogGUID" ColumnName="LogGUID" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CallRecord">
-            <EntityTypeMapping TypeName="fuelrmModel.CallRecord">
-              <MappingFragment StoreEntitySet="CallRecord">
-                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
-                <ScalarProperty Name="LicencePlate" ColumnName="LicencePlate" />
-                <ScalarProperty Name="Car" ColumnName="Car" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="Time" ColumnName="Time" />
-                <ScalarProperty Name="ProcessID" ColumnName="ProcessID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -486,15 +404,6 @@ warning 6002: The table/view 'fuelrm.dbo.URUNLISTEM' does not have a primary key
                 <ScalarProperty Name="CarBranch" ColumnName="CarBranch" />
                 <ScalarProperty Name="LicencePlate" ColumnName="LicencePlate" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Login_LOG">
-            <EntityTypeMapping TypeName="fuelrmModel.Login_LOG">
-              <MappingFragment StoreEntitySet="Login_LOG">
-                <ScalarProperty Name="Time" ColumnName="Time" />
-                <ScalarProperty Name="Guid" ColumnName="Guid" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -522,21 +431,11 @@ warning 6002: The table/view 'fuelrm.dbo.URUNLISTEM' does not have a primary key
           <EntitySetMapping Name="ProcessINFO">
             <EntityTypeMapping TypeName="fuelrmModel.ProcessINFO">
               <MappingFragment StoreEntitySet="ProcessINFO">
-                <ScalarProperty Name="IsCalled" ColumnName="IsCalled" />
                 <ScalarProperty Name="AdminID" ColumnName="AdminID" />
                 <ScalarProperty Name="Time" ColumnName="Time" />
                 <ScalarProperty Name="CarID" ColumnName="CarID" />
                 <ScalarProperty Name="ContentID" ColumnName="ContentID" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RegisterLOG">
-            <EntityTypeMapping TypeName="fuelrmModel.RegisterLOG">
-              <MappingFragment StoreEntitySet="RegisterLOG">
-                <ScalarProperty Name="Time" ColumnName="Time" />
-                <ScalarProperty Name="RegisterGUID" ColumnName="RegisterGUID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -555,7 +454,6 @@ warning 6002: The table/view 'fuelrm.dbo.URUNLISTEM' does not have a primary key
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="fuelrmModel.Users">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="NeverCall" ColumnName="NeverCall" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="Telephone" ColumnName="Telephone" />

@@ -1,91 +1,69 @@
 ﻿@using OilContRM.Models
-@model List<OilContRM.Models.GetRecords>
-@{
+@{ 
     Layout = "~/Views/Shared/_MainLayout.cshtml";
-}
-<h2>@Resources.Content.Stats</h2>
+}    
+<h2>Stats</h2>
 
-<head>
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
-    <link href="~/Content/toastr.css" rel="stylesheet" />
-    <script src="~/Scripts/toastr.js"></script>
-</head>
+            <!-- Page-Title -->
+            
+            <!-- end page title end breadcrumb -->
 
 
-<div class="row">
-    <div class="col-md-6 col-lg-6 col-xl-3">
-        <div class="widget-panel widget-style-2 bg-white">
-            <i class="md md-storage text-primary"></i>
-            <h2 class="m-0 text-dark counter font-600">@ViewBag.Processes</h2>
-            <div class="text-muted m-t-5">@Resources.Content.Processes</div>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-6 col-xl-3">
-        <div class="widget-panel widget-style-2 bg-white">
-            <i class="md md-phone text-pink"></i>
-            <h2 class="m-0 text-dark counter font-600">@ViewBag.Call</h2>
-            <div class="text-muted m-t-5">@Resources.Content.NumberOfPeopleToCall</div>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-6 col-xl-3">
-        <div class="widget-panel widget-style-2 bg-white">
-            <i class="md md-store-mall-directory text-info"></i>
-            <h2 class="m-0 text-dark counter font-600">1</h2>
-            <div class="text-muted m-t-5">@Resources.Content.Stores</div>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-6 col-xl-3">
-        <div class="widget-panel widget-style-2 bg-white">
-            <i class="md md-account-child text-custom"></i>
-            <h2 class="m-0 text-dark counter font-600">@ViewBag.Count</h2>
-            <div class="text-muted m-t-5">@Resources.Content.Users</div>
-        </div>
-    </div>
-</div>
+           <div class="row">
+                <div class="col-md-6 col-lg-6 col-xl-3">
+                    <div class="widget-panel widget-style-2 bg-white">
+                        <i class="md md-attach-money text-primary"></i>
+                        <h2 class="m-0 text-dark counter font-600">@ViewBag.Processes</h2>
+                        <div class="text-muted m-t-5">Processes</div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-3">
+                    <div class="widget-panel widget-style-2 bg-white">
+                        <i class="md md-add-shopping-cart text-pink"></i>
+                        <h2 class="m-0 text-dark counter font-600">0</h2>
+                        <div class="text-muted m-t-5">Sales</div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-3">
+                    <div class="widget-panel widget-style-2 bg-white">
+                        <i class="md md-store-mall-directory text-info"></i>
+                        <h2 class="m-0 text-dark counter font-600">1</h2>
+                        <div class="text-muted m-t-5">Stores</div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-3">
+                    <div class="widget-panel widget-style-2 bg-white">
+                        <i class="md md-account-child text-custom"></i>
+                        <h2 class="m-0 text-dark counter font-600">@ViewBag.Count</h2>
+                        <div class="text-muted m-t-5">Users</div>
+                    </div>
+                </div>
+            </div>
+     
+            
+    <!-- End Footer -->
+    <!-- jQuery  -->
+    
 
-@if (Model != null)
-{
-    foreach (var i in Model)
-    {
-
-    <script>
-    $(function () { //ready
-        toastr.options = {
-            "debug": false,
-            "positionClass": "toast-top-full-width",
-            "onclick": null,
-            "fadeIn": 300,
-            "fadeOut": 1000,
-            "timeOut": 5000,
-            "extendedTimeOut": 1000,
-            "showMethod": "show"
-        }
-        toastr.warning('@i.UserName : @i.Telephone', '@Resources.Content.YouHaveToCall');
-                });
+    <!-- jQuery  -->
+    
 
 
+    <script src="~/plugins/morris/morris.min.js"></script>
+    <script src="~/plugins/raphael/raphael-min.js"></script>
 
-    </script>
-    }
-}
+    
 
+    <!-- Todojs  -->
+    <script src="~/assets/pages/jquery.todo.js"></script>
 
+    <!-- chatjs  -->
+    <script src="~/assets/pages/jquery.chat.js"></script>
 
-<script src="~/plugins/morris/morris.min.js"></script>
-<script src="~/plugins/raphael/raphael-min.js"></script>
+    <script src="~/plugins/peity/jquery.peity.min.js"></script>
 
+    
+    <script src="~/assets/js/jquery.app.js"></script>
 
-
-<!-- Todojs  -->
-<script src="~/assets/pages/jquery.todo.js"></script>
-
-<!-- chatjs  -->
-<script src="~/assets/pages/jquery.chat.js"></script>
-
-<script src="~/plugins/peity/jquery.peity.min.js"></script>
-
-
-<script src="~/assets/js/jquery.app.js"></script>
-
-<script src="~/assets/pages/jquery.dashboard_2.js"></script>
+    <script src="~/assets/pages/jquery.dashboard_2.js"></script>
 

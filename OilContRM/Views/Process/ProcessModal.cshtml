@@ -1,56 +1,6 @@
-﻿@using OilContRM.Models;
-@using PagedList;
-@using PagedList.Mvc;
-@model IPagedList<OilContRM.Models.GetRecords>
+﻿@model OilContRM.Models.ProcessContent
+@{
+    ViewBag.Title = "ProcessModal";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
 
-<div class="row">
-    <div class="col-sm-12">
-
-        <div class="card-box" style="margin-top:0">
-
-
-            <table class="table table-striped add-edit-table" id="datatable-editable">
-
-                <tr>
-                    <th>LicencePlate</th>
-                    <th>CarBranch</th>
-                    <th>Model</th>
-                    <th>Age</th>
-                    <th>Info</th>
-                    <th>Car Maintenance Time</th>
-                    <th>Delete,Edit or Process to Car</th>
-
-
-
-
-
-
-                </tr>
-
-                <tbody>
-                    @foreach (var i in Model)
-                    {
-                        <tr class="gradeX">
-                            <td>@i.LicencePlate</td>
-                            <td>@i.Branch</td>
-                            <td>@i.Model</td>
-                            <td>@i.Description</td>
-                            <td><button class="btn btn-info" onclick="GetID(@i.ProcID);">Info</button></td>
-                            <td>@i.Time</td>
-
-
-
-
-
-
-                        </tr>
-                    }
-
-
-                </tbody>
-            </table>
-
-
-        </div>
-    </div>
-</div>

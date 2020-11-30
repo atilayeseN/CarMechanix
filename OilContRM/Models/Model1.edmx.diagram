@@ -4,19 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f1d1d2338b744d209d5398042632ad5b" Name="Diagram1" ZoomLevel="69">
-        <EntityTypeShape EntityType="fuelrmModel.Admins" Width="1.5" PointX="1.25" PointY="7.875" />
-        <EntityTypeShape EntityType="fuelrmModel.CallRecord" Width="1.5" PointX="5.75" PointY="5.75" />
+      <Diagram DiagramId="f1d1d2338b744d209d5398042632ad5b" Name="Diagram1" ZoomLevel="77">
+        <EntityTypeShape EntityType="fuelrmModel.Admins" Width="1.5" PointX="3" PointY="5.5" />
         <EntityTypeShape EntityType="fuelrmModel.CarInfo" Width="1.5" PointX="3" PointY="1" />
-        <EntityTypeShape EntityType="fuelrmModel.Login_LOG" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="fuelrmModel.Password_LOG" Width="1.5" PointX="7.75" PointY="3.75" />
-        <EntityTypeShape EntityType="fuelrmModel.ProcessContent" Width="1.5" PointX="3" PointY="5.5" />
+        <EntityTypeShape EntityType="fuelrmModel.Password_LOG" Width="1.5" PointX="5.75" PointY="4.75" />
+        <EntityTypeShape EntityType="fuelrmModel.ProcessContent" Width="1.5" PointX="3" PointY="8.375" />
         <EntityTypeShape EntityType="fuelrmModel.ProcessINFO" Width="1.5" PointX="5.25" PointY="1.125" />
-        <EntityTypeShape EntityType="fuelrmModel.RegisterLOG" Width="1.5" PointX="7.75" PointY="6.75" />
-        <EntityTypeShape EntityType="fuelrmModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="0.75" />
-        <EntityTypeShape EntityType="fuelrmModel.Users" Width="1.5" PointX="0.75" PointY="1.25" />
-        <EntityTypeShape EntityType="fuelrmModel.CompanyDatas" Width="1.5" PointX="9.75" PointY="3.75" />
-        <EntityTypeShape EntityType="fuelrmModel.URUNLISTEM" Width="1.5" PointX="0.5" PointY="5.75" />
+        <EntityTypeShape EntityType="fuelrmModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="fuelrmModel.Users" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="fuelrmModel.CompanyDatas" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="fuelrmModel.URUNLISTEM" Width="1.5" PointX="5.75" PointY="7.75" />
         <AssociationConnector Association="fuelrmModel.FK_ProcessINFO_Admins" />
         <AssociationConnector Association="fuelrmModel.FK_CarInfo_Users" />
         <AssociationConnector Association="fuelrmModel.FK_ProcessINFO_CarInfo" />
